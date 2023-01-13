@@ -50,23 +50,42 @@ function call they should come after positional arguments
 """
 #function examples
 """consider the following function definations paying close attention to the markers / and *"""
-def standard_arg(arg): 
+def standard_arg(arg):
+    print("from standard arg")
     print(arg)
 #no restriction on calling convention and args may be passed by position
 #or keyword
 standard_arg(2)
-standard_arg(arg=2)
+standard_arg(arg=2)#no error
+
 
 def pos_only_arg(arg, /):
+    print("from ps only arg")
     print(arg)
 #can only use positional args as there is a / in the function    
 pos_only_arg(1)
 #pos_only_arg(arg=1)  TypeError: pos_only_arg() got some positional-only arguments passed as keyword arguments: 'arg'
+
+
+
 def kwd_only_arg(*, arg):
+    print("from keyword only arg")
     print(arg)
-#kwd_only_args only allows keyword ar    
+#kwd_only_args only allows keyword arguments as indicated by a * in the function defination  
+#kwd_only_arg(3)#will generate error
+
+
 def combined_example(pos_only, /, standard, *, kwd_only):
+    print("from combined example")
     print(pos_only,standard,kwd_only)
+combined_example(1,2, kwd_only=3)
+combined_example(1,standard=2,kwd_only=3)
+#combined_example(pos_only=1,standard=2,kwd_only=3)#will generate error
+
+#lambda expressions
+"""
+small anonymus functions can be created using the lambda keyword
+"""
 
 
 
