@@ -1,21 +1,21 @@
 #!/bin/python3.9
-# fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
-# print(fruits.index('banana', 4))  # Find next banana starting at position 4
-# print(fruits.index('banana'))
-# print(fruits.count('tangerine'))
-# print(fruits.count('apple'))
-# print(fruits)
-# print("AFTER REVERSING")
-# print(fruits.reverse())
-# print(fruits)
-# fruits.append('grape')
-# print(fruits)
-# print("AFTER SORTING")
-# fruits.sort()
-# print(fruits)
-# print("AFTER POP")
-# fruits.pop()
-# print(fruits)
+fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
+print(fruits.index('banana', 4))  # Find next banana starting at position 4
+print(fruits.index('banana'))
+print(fruits.count('tangerine'))
+print(fruits.count('apple'))
+print(fruits)
+print("AFTER REVERSING")
+print(fruits.reverse())
+print(fruits)
+fruits.append('grape')
+print(fruits)
+print("AFTER SORTING")
+fruits.sort()
+print(fruits)
+print("AFTER POP")
+fruits.pop()
+print(fruits)
 
 """you may have noticed that methods like insert,remove or sort that only modify the
 list have no return value printed - they return default None.This is a desing principal
