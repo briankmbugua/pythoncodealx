@@ -28,3 +28,4 @@ def fib4(n):
         result.append(a)
         a, b = b, a+b
     return print(result)
+
