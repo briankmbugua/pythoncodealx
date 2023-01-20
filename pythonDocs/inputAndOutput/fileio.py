@@ -14,7 +14,8 @@ print(f.closed)
 the way the file will be used
 'r'--- read file, 'w'--- writting only and any existing file with the same name will be erased
 'a'--- opend the file for appending any data written to the file is automatically added at the 
-end, 'r+'--- opens the file for both reading and writting, the mode argument is optional and
+end, 'r+'--- opens the file for both reading and writting, 'rb+' --- means open for write and
+reading in binary, the '+' makes it write and reading the mode argument is optional and
 when ommitted 'r' is will be assumed
 UTF-8 is the modern de-facto standard
 Appending a 'b' to the mode opens the file in binary mode, in binary mode the data is read and
