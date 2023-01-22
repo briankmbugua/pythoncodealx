@@ -95,7 +95,10 @@ except(ZeroDivisionError, TypeError) as e:
 """Built in exception types define __str__() to print all the arguments with explicitly
 accessing .args
 The expection's __str__() output is printed as the last part('detail') of the message of
-unhandled exceptions"""
+unhandled exceptions
+expception not handled are  SystemExit which raises sys.exit() and KeyboardInterrupt
+"""
+
 try:
     raise Exception('spam','eggs')
 except Exception as inst:
@@ -106,7 +109,3 @@ except Exception as inst:
     x, y = inst.args #unpack args
     print('x=', x)
     print('y =', y)
-
-
-
-
