@@ -116,3 +116,64 @@ print(my_object.my_function2(5))  # 11
 # trying to access the private method raise an error 
 #print(my_object._my_private_method()) # will raise an error
 
+#xample2
+
+
+"""Any function object that is a class attribute defines a method for instances of that class
+It is not necessary that the function defination is textually enclosed in the classs defination
+Assingning a function object to a local variable is also okay"""
+
+def f1(self, x, y):
+    return min(x, x+y)
+
+class C:
+    f = f1
+    def g(self):
+        return 'Hello world'
+    h = g
+
+
+
+"""
+Now f, g and h are all attributes of class C that refer to function objects, and consequently
+they are all methods of instances of C   h being excatly equivalent to g.NB THIS ONLY SERVES
+TO CONFUSE THE READER OF A PROGRAM
+"""
+
+
+#Methods may call other methods by using method attributes of the self argument
+y = 20
+class Bag:
+    def __init__(self):
+        self.data = []
+    def add(self, x):
+        self.data.append(x)
+        print("the value of the global y",y)#methods in python can reference global scope
+                                            #just like normal functions
+        return self.data
+
+    def addTwice(self, x):
+        self.add(x)
+        self.add(x)
+bag = Bag()
+print(bag.add(50))
+
+#1.methods in python can reference global scope
+#just like normal functions
+#2.The global scope associated with a method is the module containing its defination
+#if you import the module in another file, to use variables in the imported module
+#you have to go through the methods and function defined in that imported module 
+#A class does not exist in isolation, it is defined inside a module and can acces the gobal
+#scope of that module but it is not considered to be part of the global scope
+
+class Myclass:
+    pass
+
+obj = MyClass()
+print(obj.__class__)  #<class '__main__.MyClass'>
+#Here 'obj' is an instance of 'MyClass' and the '__class__'
+#and the attribute of 'obj' is a reference to class object 'MyClass'
+#you can use this attribute to check the class of an object, or to check if an object
+#is an instance of a particular class
+print(obj.__class__)
+
