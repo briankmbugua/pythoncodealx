@@ -22,4 +22,4 @@ print(a ^ b) #letters in a or b not both
 "Similarly to list comprehensions, set comprehensions are also supported"
 a = {x for x in 'abracadabra' if x not in 'abc'}
 print(a)
-
+print(a)
