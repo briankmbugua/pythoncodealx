@@ -87,9 +87,13 @@ class Mapping:
         for item in iterable:
             self.items_list.append(item)
     __update = update # private copy of original update() method
+                      #this allows it to be called using either names
+                      #__update or update
 
 class MappingSubclass(Mapping):
-    def update(self, keys, values):
+    def update(self, keys, values):#this is method overriding
+#this means when the 'update' method is called on an instance of the MappingSubclass
+#the implementation defined in the subclass will be executed rather than the one in the parent class
         #provides new signature for upadate()
         #but does not break the __init__()
         for item in zip(keys, values):
@@ -105,5 +109,45 @@ print(obj.items_list)
 print(obj.update([3,4,5]))
 print(obj.items_list)
 
+#example 2
 
+class Animal:
+    def __init__(self, type,animal):
+        self.animal = animal
+        self.__name = type
+    def  changeType(self,type):
+        self.__name = type
+    def whatIsThis():
+        return 
+
+# class Dog(Animal):
+
+dog = Animal('wild','animal')
+print(dog.animal)
+print(f"before using changeType() method, {dog._Animal__name}")
+dog.changeType("domestic")
+print(f"After using changeType() method, {dog._Animal__name}")
+
+#print(dog._Animal__name) #Using name mangling to access a private variable
+                         #but this should not be done as per python community guidline
+
+#creating a subclass of Animal
+
+class Bird(Animal):
+    def __init__(self,name):
+        super().__init__(type,'bird')
+        self.name = name
+    def changeType(self, type):
+        self.name = type
+
+eagle = Bird('airboone')
+print(eagle.name)
+print(eagle.changeType('Ground')) #method overiding the changeType
+print(eagle.name)
+print(eagle.animal)#without calling super you cannot acces animal from
+                   #the child class
+                   #this shows that the 'child' class can access the 'value'
+                   #variable from its parent class, but it does not inherit it
+                   #automatically, instead it must call the parent class '__init__' 
+                   #method in order to access the variable
 
