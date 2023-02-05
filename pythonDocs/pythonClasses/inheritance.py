@@ -69,7 +69,7 @@ class DerivedClassName(Base1, Base2, Base3):
 
 #NAME MANGLING
 #this is a mechanism to support class-private members in python
-#identifiers with the forn _spam(at least two leading underscores, at most one trailling
+#identifiers with the form _spam(at least two leading underscores, at most one trailling
 # underscore) are replaced with _classname_spam, where class name is the current class name
 #with leading underscores stripped
 #Mangling is done within the defination of a class and is used to avoid name clashes with names
