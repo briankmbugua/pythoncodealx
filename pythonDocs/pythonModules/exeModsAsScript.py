@@ -22,5 +22,9 @@ if __name__ == "module_name":
 
 import testModule
 
+print("this is from testModule.py")
+
+
+#calling the a function defined inside the testModule.py
 testModule.example() #output will this script is being imported as a module
 

@@ -28,10 +28,6 @@ def fib2(n): # return Fibonacci series up to n
 #>>>fib = modules.fib
 #>>>fib(10) 1 1 2 3 5 8
 
-#MORE ON MODULES
-"""A module can contain executable statements as well as function definations.These statements
-are intended to initialize the module.They are """
-
 #More on modules
 """a module can contain exexcutable statements as well as function definations.These statements
 are meant to initialize the module.They are executed only the first time the module name is
