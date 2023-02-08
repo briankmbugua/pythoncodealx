@@ -12,6 +12,8 @@ class HelloWorld(cmd.Cmd):
             print("Hi", person)
         else:
             print("hi")
+    def help_greet(self):#The formatting of the help command is not good an alternative solution is to have a help handler named help_greet(). When present the help handler is called on to produce help text for the named command
+        print("\n".join([ 'greet [person]', 'Greet the named person']))
     def do_EOF(self, line):
         """End the program"""
         return True
