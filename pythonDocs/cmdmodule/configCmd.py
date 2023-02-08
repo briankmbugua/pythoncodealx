@@ -19,3 +19,14 @@ class HelloWorld(cmd.Cmd):
     undoc_header = "undoc_header"
 
     ruler = "_"
+
+    def do_prompt(self, line):
+        """Change interactive prompt"""
+        self.prompt = line + ': '
+    
+    def do_EOF(self, line):
+        return True
+    
+
+if __name__ == '__main__':
+    HelloWorld().cmdloop()
