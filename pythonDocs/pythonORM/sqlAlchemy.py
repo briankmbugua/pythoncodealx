@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData
 
-engine = create_engine('mysql+pymysql://root:password@127.0.0.1:3306/usersDb')
+engine = create_engine('mysql+pymysql://root:password@127.0.0.1:3306/sqlAlchemydb')
 
 metadata = MetaData()
 
