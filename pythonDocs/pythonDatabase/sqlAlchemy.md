@@ -58,3 +58,53 @@ The create_engine() function returns an Engine object.Some important methods of 
 - disspose() - closes the engine and releases any resources that it is using.This should be called when the engine is no longer needed.
 - table_names() - Returns a list of all table names available in the database
 - driver() - Driver name of the Dialect in use by the Engine
+
+# SQLAlchemy Core - Creating Table
+## Column object
+SQLAlchemy Column object represents a column in a database table which is in turn represented by a Tableobject.
+## Metadata
+Is a container that holds a collection of 'Table' objects and their associated schema constructs.It's like a "bucket" that you can use to group related tables and their metadata togethor.
+The MetaData object has an optional binding to an Engine pr a database connection this allows you to associate the Metadata object with a specific database so that you can easily create, modify and query tables using the Table objects in the Metadata
+
+```python
+from sqlalchemy import Metadata
+meta = MetaData()
+```
+SQLAlchemy matches python data to the best possible generic column data types defined in it.
+## Some generic data types
+- BigInteger
+- Boolean
+- Date
+- DateTime
+- Float
+- Integer
+- Numeric
+- SmallInteger
+- String
+- Text
+- Time
+
+## Example to create a students table in college database
+
+```python
+#importing everything required
+from sqlalchemy import Table, Column, Integer, String, MetaData, create_engine
+#creating a database engine or connection
+engine = create_engine('mysql+pymsql://root:passowrd@127.0.0.1:3306/dbname')
+#creating the metadata object from the MetaData() constructor
+metadata = MetaData()
+#creating the students table
+students = Table(
+    'students', metadata,#associating the table with the metadata object by passing it as an argument to the Table() constructor
+    Column(id', Interger, primary_key = True), # creating the columns
+    Column('name', String),
+    Column('lastname', String)
+)
+
+metadata.create_all(engine)
+```
+
+## create_all()
+When you define a Table object you're simply describing the structure of the table in your code.The Table object does't actually exist in the database untill you use the create_all() function to create it.
+When create_all() is called it checks the metadata for any tables that haven't been created yet in the database and generates the sql code necessary to create those tables.It then executes the SQL code using the Engine object.Once all the tables have been created the metadata object is updated with information about those tables such as the primary key and the foreighn key contraints
+
