@@ -124,3 +124,35 @@ delete() - it perfoms a bulk delete query.Delete rows matched by this query from
 - one() - It returns excatly one result of raise an exception
 - order_by() - it applies one or more ORDERED BY criterion to the query and returns the newly resulting Query
 - update() - performs a bulk update query and updates rows matched by this query in the database.
+# CRUD
+### create
+use session.add() to add objects
+session.commit() to persist changes to the database
+### read
+To retrieve data use session.query() with any filters, joins or sorting options
+### update
+You retrieve an existing object from the database using query or any other means
+You the modify the attributes of the object with the desired values
+Then use session.commit() to persist the changes in the database
+
+```python
+# update example
+#Assuming 'session' is an instance of SQLAlchemy session and customers is a mapped class
+#Retrieve the customer to update
+customer = session.query(Customer).filter_by(id=1).first()
+#update the customer's attributes
+customer.name = "New Name"
+customer.email = "newemail@example.com"
+#commit changes to the database
+session.commit()
+```
+### delete
+First retrieve the object representing the record from the database using a query or any other means, Then call session.delete() passing in the object to mark it for deletion.
+session.commit() will remove it from the databasa
+```python
+customer = session.query(Customer).filter_by(id=1).first()
+# Delete the customer
+session.delete(customer)
+# Commit changes to the database
+session.commit()
+```
