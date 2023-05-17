@@ -59,4 +59,22 @@ session = Session()
  fetching the desired data.
 
  ## adding objects to the table
- 
+ After declaring a mapping and creating sessions next you add objects to the table
+ ```python
+ c1 = Sales(name = "brian")
+ session.add(c1)
+ ```
+ The transaction above is pending untill the same is flushed using commit() method.
+  ```python
+ c1 = Sales(name = "brian")
+ session.add(c1)
+ session.commit()
+ ```
+ When you call session.commit() SQLAlchemy initiates a flush operation.
+ When you make changes to objects within a session, SQLAlchemy keeps track of these changes in memory.However the changes are not immediately written to the database. They are accumulated and held in the session's transactional context.
+ During the flash SQLAlchemy generates the necessary SQL statements based on the tracked changes and sends them to the database for execution.All the CRUD operations. This ensures ACID
+ ## ACID
+ - Atomicity - Guarantess that a transaction is treated as a single indivisible unit of work.It means that either all changes made within one transaction are commited successfully, or none of them are commited at all.If any part of the transaction fails or encounters an error, the entire transaction is rolled back.
+ - Consistency - Ensures that a transaction brings the database from one consistent to another consistent state.This guarantees that the integrity of the data is maintained throught the transaction.
+ - Isolation - Ensures that concurrent transactions do not interfere with each other while accessing the or modifying the database.Each transaction is executed in isolation as if it were the only transadtion taking place.
+- Durability - Guarantess that once a transaction is committed, its changes are permanently saved and will survive any subsequent failures.
