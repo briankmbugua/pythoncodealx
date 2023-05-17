@@ -111,3 +111,16 @@ query = session.query(User).filter(User.age >= 18).order_by(User.name)
 ```
 In the above example we start with a base Query object by calling session.query(User)
 Then, we chain the filter() method to add a condition that filters users based on their age being grater than or equal to 18.Finally, we chain the 'order_by()' method to sort the results by the user's name.
+
+## USEFUL QUERY METHODS
+- add_columns - it adds one or more column expressions to the list of result columns to be returned
+- add_entity() - it adds a mapped entity to the list of result columns to be returned.
+- count() - returns a count of rows this Query would return
+delete() - it perfoms a bulk delete query.Delete rows matched by this query from the database
+- distinct() - it applies a DISTINCT cluase to the query and return the newly resulting Query
+- filter() - applies the given filtering criterion to a copy of this query, using SQL expressions
+- get() - returns an instance based on the given primary key indentifier providing direct access to the identity map of the owning session
+- group_by() - returns one or more groups by criterion and apply generatively, returning the newly resulting query
+- one() - It returns excatly one result of raise an exception
+- order_by() - it applies one or more ORDERED BY criterion to the query and returns the newly resulting Query
+- update() - performs a bulk update query and updates rows matched by this query in the database.
