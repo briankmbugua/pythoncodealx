@@ -108,3 +108,7 @@ metadata.create_all(engine)
 When you define a Table object you're simply describing the structure of the table in your code.The Table object does't actually exist in the database untill you use the create_all() function to create it.
 When create_all() is called it checks the metadata for any tables that haven't been created yet in the database and generates the sql code necessary to create those tables.It then executes the SQL code using the Engine object.Once all the tables have been created the metadata object is updated with information about those tables such as the primary key and the foreighn key contraints
 
+
+# SQLAlchemy orm
+# Declaring Ma
+
