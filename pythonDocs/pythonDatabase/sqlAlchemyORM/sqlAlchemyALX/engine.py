@@ -5,7 +5,7 @@
 # It is configured using a URL string that describes the connection details to the database host or backend.
 
 from sqlalchemy import create_engine
-engine = create_engine('mysql+pymysql://root:password@localhost:3306/dbone',pool_pre_ping=True,echo=True)
+engine = create_engine('mysql+pymysql://root:password@localhost:3306/onedb',pool_pre_ping=True,echo=True)
 # Kind of database that we are communicating with in this case it is mysql
 # What DBAPI are we using,This is a third party driver that SQLAlchemy uses to interact with a particular database.If omitted, SQLAlchemy will use a default DBAPI for the particular database in this case we are using pymysql
 # How do we locate the database, in this case our URL ://root:password@localhost:3306/dbone
