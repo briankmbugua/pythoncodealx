@@ -22,5 +22,13 @@ with engine.connect() as connection:
         print(x)
         print(y)
 
+# Interger index - Tuples are Python sequences, so regular interger access is available too
+
+with engine.connect() as connection:
+    result = connection.execute(text("select x, y from some_table"))
+    for row in result:
+        x = row[0]
+        print("X:",x)
+
 
 
