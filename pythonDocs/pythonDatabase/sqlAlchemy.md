@@ -110,5 +110,5 @@ When create_all() is called it checks the metadata for any tables that haven't b
 
 
 # SQLAlchemy orm
-# Declaring Ma
+# Declaring Mapping
 
