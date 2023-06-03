@@ -1,1 +1,1 @@
-{"name": "John", "age": 30, "city": "New York"}
+{"id": "1a9987ce-56cd-440f-bc39-acf0624f33c3", "created_at": "2023-06-03T16:23:58.141741", "updated_at": "2023-06-03T16:23:58.141741", "__class__": "BaseModel"}
