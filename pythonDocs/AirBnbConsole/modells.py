@@ -46,24 +46,28 @@ class BaseModel:
 # newModel = BaseModel()
 
 
-with open('data.json', 'w') as file:
+with open('data.json', 'a') as file:
     newModel3 = BaseModel()
     new_dict = newModel3.to_dict()
     json.dump(new_dict, file)
-with open('data.json', 'w') as file:
+    file.write('\n')
+with open('data.json', 'a') as file:
     newModel4 = BaseModel()
     new_dict = newModel4.to_dict()
     json.dump(new_dict, file)
-with open('data.json', 'w') as file:
+    file.write('\n')
+with open('data.json', 'a') as file:
     newModel5 = BaseModel()
     new_dict = newModel5.to_dict()
     json.dump(new_dict, file)
-with open('data.json', 'w') as file:
+    file.write('\n')
+with open('data.json', 'a') as file:
     newModel6 = BaseModel()
     new_dict = newModel6.to_dict()
     json.dump(new_dict, file)
+    file.write('\n')
 
-# with open('data.json', 'r') as file:
-#     obj_dict = json.load(file)
-#     print(obj_dict)
+with open('data.json', 'r') as file:
+    obj_dict = json.load(file)
+    print(obj_dict)
 
