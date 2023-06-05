@@ -38,43 +38,52 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Prints the string representation of an instance"""
         args = arg.split()
-        if not args:
+        if len(args) == 0:
             print("** class name missing **")
             return
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+        storage = FileStorage()
+        storage.reload()
+        obj_dict = storage.all()
         try:
-            cls_name = args[0]
-            cls_id = args[1]
-            obj = self.file_storage.find(cls_name, cls_id)
-            if obj is None:
-                print("** no instance found **")
-                return
-            print(obj)
-        except IndexError:
-            if len(args) == 1:
-                print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
+            eval(args[0])
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        key = args[0] + "." + args[1]
+        try:
+            value = obj_dict[key]
+            print(value)
+        except KeyError:
+            print("** no instance found **")
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
         args = arg.split()
-        if not args:
+        if len(args) == 0:
             print("** class name missing **")
             return
+        elif len(args) == 1:
+            print("** instance id missing **")
+            return
+        class_name = args[0]
+        class_id = args[1]
+        storage = FileStorage()
+        storage.reload()
+        obj_dict = storage.all()
         try:
-            cls_name = args[0]
-            cls_id = args[1]
-            obj = self.file_storage.find(cls_name, cls_id)
-            if obj is None:
-                print("** no instance found **")
-                return
-            self.file_storage.delete(obj)
-            self.file_storage.save()
-        except IndexError:
-            if len(args) == 1:
-                print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
+            eval(class_name)
+        except NameError:
+            print("** class doesn't exist")
+            return
+        key = class_name + "." + class_id
+        try:
+            del obj_dict[key]
+        except KeyError:
+            print("** no instance found **")
+        storage.save()
 
     def do_all(self, arg):
         """Prints all instances or instances of a specific class"""
@@ -96,34 +105,60 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
+        storage = FileStorage()
+        storage.reload()
         args = arg.split()
-        if not args:
+        if len(args) == 0:
             print("** class name missing **")
             return
+        elif len(args) == 1:
+            print("** instance id missing **")
+            return
+        elif len(args) == 2:
+            print("** attribute name missing **")
+            return
+        elif len(args) == 3:
+            print("** value missing **")
+            return
+        key = args[0] + "." + args[1]
+        obj_dict = storage.all()
         try:
-            cls_name = args[0]
-            cls_id = args[1]
-            obj = self.file_storage.find(cls_name, cls_id)
-            if obj is None:
-                print("** no instance found **")
-                return
-            if len(args) < 3:
-                print("** attribute name missing **")
-                return
-            if len(args) < 4:
-                print("** value missing **")
-                return
-            attribute = args[2]
-            value = args[3]
-            setattr(obj, attribute, value)
-            self.file_storage.save()
-            
-        except IndexError:
-            if len(args) == 1:
-                print("** instance id missing **")
+            obj_value = obj_dict[key]
+        except KeyError:
+            print("** no instance found **")
+            return
+        # try:
+        #     attr_type = type(getattr(obj_value, args[2]))
+        #     args[3] = attr_type(args[3])
+        # except AttributeError:
+        #     pass
+        setattr(obj_value, args[2], args[3])
+        obj_value.save()
+    def emptyline(self):
+        """Prevents printing anything when an empty line is passed"""
+        pass
+    def do_count(self, args):
+        """Counts/retrieves the number of instances"""
+        obj_list = []
+        storage = FileStorage()
+        storage.reload()
+        objects = storage.all()
+        try:
+            if len(args) != 0:
+                eval(args)
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        for key, val in objects.items():
+            if len(args) != 0:
+                if type(val) is eval(args):
+                    obj_list.append(val)
             else:
-                print("** class doesn't exist **")
-
+                obj_list.append(val)
+        print(len(obj_list))
+    def default(self, args):
+        """Catches all the function names that are not explicitly defined"""
+        functions = {"all": self.do_all, "update":self.do_update,"show": self.do_show, "count": self.do_count, "destroy": self.do_destroy, "update": self.do_update}
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
 
