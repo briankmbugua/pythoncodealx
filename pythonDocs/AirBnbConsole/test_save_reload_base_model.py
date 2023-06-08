@@ -23,12 +23,24 @@ class Person:
         self.name = name
         self.age = age
 
-newPerson = Person('brian', 27)
+# newPerson = Person('brian', 100)
 
 # print(newPerson)
 
-newPersonTwo = eval('Person')('brian', 10)
+# newPersonTwo = eval('Person')('brian', 10)
+
+# print(newPersonTwo.name)
+
+
+newPerson = Person('brian', 100)
+
+print(newPerson.name)
+print(newPerson.age)
+
+newPersonTwo = eval('Person')('brian',100)
+
+print(eval('Person'))
+print(Person)
 
 print(newPersonTwo.name)
-
-
+print(newPersonTwo.age)
